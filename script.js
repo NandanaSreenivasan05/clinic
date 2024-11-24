@@ -115,4 +115,41 @@ document.addEventListener('DOMContentLoaded', function () {
   
 
 
+
+  const form = document.getElementById('appointment-form'); // Assuming you have an ID for your form
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+  
+    // Collect form data
+    const patientName = document.getElementById('patientName').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    const message = document.querySelector('textarea[name="message"]').value;
+  
+    // Send data to backend using fetch
+    try {
+      const response = await fetch('http://localhost:5001/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          patientName,
+          email,
+          phone,
+          date,
+          time,
+          message
+        }),
+      });
+  
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  });
   
