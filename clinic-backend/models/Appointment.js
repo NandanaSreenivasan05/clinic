@@ -7,6 +7,7 @@ const AppointmentSchema = new mongoose.Schema({
   date: { type: Date, required: true},
   time: { type: String, required: true},
   message: { type: String },
+  gender: {type: String},
   createdAt: { type: Date, default: Date.now },
 });
 
